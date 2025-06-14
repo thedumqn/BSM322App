@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BSM322App.MainPage"
+    Title="Profilim"
+    BackgroundColor="{AppThemeBinding Light=#F5F9FF, Dark=#121212}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#222}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#DDD, Dark=#444}" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=#222, Dark=#EEE}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="30" Padding="30" HorizontalOptions="Center" WidthRequest="350">
+
+            <!-- Profil Bölümü -->
+            <Frame>
+                <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
+
+                    <!-- Yuvarlak profil fotoğrafı -->
+                    <Frame Padding="0" CornerRadius="70" IsClippedToBounds="True" HeightRequest="140" WidthRequest="140" HorizontalOptions="Center">
+                        <Image 
+                            Source="profile.jpg"
+                            Aspect="AspectFill"
+                            HeightRequest="140" WidthRequest="140" />
+                    </Frame>
+
+                    <Label Text="Sadettin Duman" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Bilgisayar Mühendisliği Öğrencisi" FontSize="18" HorizontalOptions="Center" />
+                    <Label Text="Öğrenci No: 21010310011" FontSize="16" HorizontalOptions="Center" TextColor="{AppThemeBinding Light=#555, Dark=#AAA}" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Ek bölümler buraya eklenebilir -->
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

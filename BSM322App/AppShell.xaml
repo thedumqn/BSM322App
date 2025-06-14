@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BSM322App"
+    x:Class="BSM322App.AppShell"
+    Title="BSM322 Uygulaması"
+    FlyoutBehavior="Flyout">
+
+    <!-- Login sayfası -->
+    <ShellContent
+        Title="Login"
+        Icon="home.png"
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate local:LoginPage}" />
+
+    <!-- Flyout Menüsü -->
+    <FlyoutItem Title="Menü" Icon="menu.png">
+
+        <ShellContent
+            Title="Giriş"
+            Icon="home.png"
+            Route="MainPage"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+
+        <ShellContent
+            Title="Kurlar"
+            Icon="currency.png"
+            Route="KurlarPage"
+            ContentTemplate="{DataTemplate local:KurlarPage}" />
+
+        <ShellContent
+            Title="Haberler"
+            Icon="news.png"
+            Route="HaberlerPage1"
+            ContentTemplate="{DataTemplate local:HaberlerPage1}" />
+
+        <ShellContent
+            Title="Hava Durumu"
+            Icon="weather.png"
+            Route="HavaDurumuPage"
+            ContentTemplate="{DataTemplate local:HavaDurumuPage}" />
+
+        <ShellContent
+            Title="Yapılacaklar"
+            Icon="tasks.png"
+            Route="YapilacaklarPage"
+            ContentTemplate="{DataTemplate local:YapilacaklarPage}" />
+
+        <ShellContent
+            Title="Ayarlar"
+            Icon="settings.png"
+            Route="AyarlarPage"
+            ContentTemplate="{DataTemplate local:AyarlarPage}" />
+
+    </FlyoutItem>
+
+</Shell>

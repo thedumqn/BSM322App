@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSM322App.HavaDurumuDetayPage"
+             Title="Hava Durumu Detayı"
+             BackgroundColor="#F8FAFC">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2E86AB</Color>
+            <Color x:Key="CardColor">#FFFFFF</Color>
+            <Color x:Key="TextColor">#1F2937</Color>
+            <Color x:Key="SubTextColor">#6B7280</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="15" Spacing="15">
+
+            <!-- Şehir Bilgi Kartı -->
+            <Frame BackgroundColor="{StaticResource CardColor}" 
+                   HasShadow="True" CornerRadius="12" Padding="20">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackLayout Grid.Column="0">
+                        <Label x:Name="lblSehirAdi" Text="Şehir Adı" 
+                               FontSize="28" FontAttributes="Bold" 
+                               TextColor="{StaticResource TextColor}" />
+                        <Label x:Name="lblKoordinatlar" Text="Koordinatlar" 
+                               FontSize="14" TextColor="{StaticResource SubTextColor}" />
+                        <Label x:Name="lblSonGuncelleme" Text="Son Güncelleme" 
+                               FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                    </StackLayout>
+
+                    <Button x:Name="btnFavorite" Grid.Column="1" 
+                            Text="☆" FontSize="32" 
+                            BackgroundColor="Transparent" 
+                            Clicked="ToggleFavorite_Clicked" />
+                </Grid>
+            </Frame>
+
+            <!-- Hızlı Aksiyonlar -->
+            <Frame BackgroundColor="{StaticResource CardColor}" 
+                   HasShadow="True" CornerRadius="12" Padding="15">
+                <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                    <Button Grid.Column="0" Text="🔄&#x0a;Yenile" 
+                            BackgroundColor="{StaticResource PrimaryColor}" 
+                            TextColor="White" CornerRadius="8" 
+                            Clicked="Yenile_Clicked" />
+                    <Button Grid.Column="1" Text="📍&#x0a;Harita" 
+                            BackgroundColor="{StaticResource PrimaryColor}" 
+                            TextColor="White" CornerRadius="8" 
+                            Clicked="Harita_Clicked" />
+                    <Button Grid.Column="2" Text="📤&#x0a;Paylaş" 
+                            BackgroundColor="{StaticResource PrimaryColor}" 
+                            TextColor="White" CornerRadius="8" 
+                            Clicked="Paylas_Clicked" />
+                    <Button Grid.Column="3" Text="⚙️&#x0a;Ayarlar" 
+                            BackgroundColor="{StaticResource PrimaryColor}" 
+                            TextColor="White" CornerRadius="8" 
+                            Clicked="Ayarlar_Clicked" />
+                </Grid>
+            </Frame>
+
+            <!-- Görüntüleme Modu Seçimi -->
+            <Frame BackgroundColor="{StaticResource CardColor}" 
+                   HasShadow="True" CornerRadius="12" Padding="15">
+                <StackLayout>
+                    <Label Text="Görüntüleme Modu" 
+                           FontSize="18" FontAttributes="Bold" 
+                           TextColor="{StaticResource TextColor}" 
+                           Margin="0,0,0,10" />
+
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <Button x:Name="btnTahmin" Grid.Column="0" 
+                                Text="📅 5 Günlük" 
+                                BackgroundColor="Transparent" 
+                                BorderColor="{StaticResource PrimaryColor}" 
+                                BorderWidth="1" CornerRadius="8" 
+                                Clicked="GoruntulemeModuDegistir_Clicked" 
+                                CommandParameter="Tahmin" />
+                        <Button x:Name="btnSonDurum" Grid.Column="1" 
+                                Text="🌤️ Şu An" 
+                                BackgroundColor="Transparent" 
+                                BorderColor="{StaticResource PrimaryColor}" 
+                                BorderWidth="1" CornerRadius="8" 
+                                Clicked="GoruntulemeModuDegistir_Clicked" 
+                                CommandParameter="SonDurum" />
+                        <Button x:Name="btnKlasik" Grid.Column="2" 
+                                Text="📊 Klasik" 
+                                BackgroundColor="Transparent" 
+                                BorderColor="{StaticResource PrimaryColor}" 
+                                BorderWidth="1" CornerRadius="8" 
+                                Clicked="GoruntulemeModuDegistir_Clicked" 
+                                CommandParameter="Klasik" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!-- Ana Hava Durumu Görüntüsü -->
+            <Frame BackgroundColor="{StaticResource CardColor}" 
+                   HasShadow="True" CornerRadius="12" Padding="0">
+                <StackLayout>
+                    <Label Text="Hava Durumu" 
+                           FontSize="18" FontAttributes="Bold" 
+                           TextColor="{StaticResource TextColor}" 
+                           Margin="15,15,15,10" />
+
+                    <WebView x:Name="mainWebView" 
+                             HeightRequest="200" 
+                             BackgroundColor="Transparent" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Detaylı Bilgiler -->
+            <Frame BackgroundColor="{StaticResource CardColor}" 
+                   HasShadow="True" CornerRadius="12" Padding="15">
+                <StackLayout>
+                    <Label Text="Detaylı Bilgiler" 
+                           FontSize="18" FontAttributes="Bold" 
+                           TextColor="{StaticResource TextColor}" 
+                           Margin="0,0,0,15" />
+
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto" 
+                          ColumnDefinitions="*,*" 
+                          RowSpacing="10" ColumnSpacing="15">
+
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="📅 Eklenme Tarihi" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label x:Name="lblEklenmeTarihi" Text="-" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label Text="🔄 Son Güncelleme" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label x:Name="lblDetaySonGuncelleme" Text="-" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <Label Text="🌍 Enlem" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label x:Name="lblEnlem" Text="-" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <Label Text="🌍 Boylam" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label x:Name="lblBoylam" Text="-" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="0">
+                            <Label Text="⭐ Favori Durumu" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label x:Name="lblFavoriDurumu" Text="-" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="1">
+                            <Label Text="🔗 Kaynak" 
+                                   FontSize="12" TextColor="{StaticResource SubTextColor}" />
+                            <Label Text="MGM" 
+                                   FontSize="14" FontAttributes="Bold" />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!-- Alt Bilgi -->
+            <StackLayout HorizontalOptions="Center" Opacity="0.7">
+                <Label Text="BSM322 Hava Durumu Uygulaması" 
+                       FontSize="12" TextColor="{StaticResource SubTextColor}" 
+                       HorizontalOptions="Center" />
+                <Label Text="Meteoroloji Genel Müdürlüğü verilerini kullanır" 
+                       FontSize="10" TextColor="{StaticResource SubTextColor}" 
+                       HorizontalOptions="Center" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "219115228564",
+    "project_id": "gorselodevbsm322",
+    "storage_bucket": "gorselodevbsm322.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219115228564:android:f3c80de8758c148b635381",
+        "android_client_info": {
+          "package_name": "bsm322.gorsel.odev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNPtQfJN6zQ1mDKjRfWNengXfdKHv4r-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

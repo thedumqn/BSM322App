@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSM322App.HavaDurumuPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <Label x:Name="lblToplamSehir" FontSize="18" FontAttributes="Bold"
+                   TextColor="{DynamicResource PrimaryTextColor}" />
+
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="➕ Şehir Ekle" Clicked="SehirEkle_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+                <Button Text="🔥 Popüler Şehirler" Clicked="PopulerSehirler_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+                <Button Text="🔄 Hepsini Yenile" Clicked="TumunuYenile_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+                <Button Text="⚙️ Ayarlar" Clicked="Ayarlar_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button x:Name="btnTahmin" Text="Tahmin" CommandParameter="Tahmin" Clicked="GoruntulemeModuDegistir_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+                <Button x:Name="btnSonDurum" Text="Son Durum" CommandParameter="SonDurum" Clicked="GoruntulemeModuDegistir_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+                <Button x:Name="btnKlasik" Text="Klasik" CommandParameter="Klasik" Clicked="GoruntulemeModuDegistir_Clicked"
+                        BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                        TextColor="White" />
+            </StackLayout>
+
+            <Label x:Name="stackEmpty" Text="Takip edilen şehir yok. Yeni şehir ekleyebilirsiniz."
+                   FontSize="16"
+                   TextColor="{DynamicResource SecondaryTextColor}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="True" />
+
+            <CollectionView x:Name="lstSehirler" IsVisible="False" ItemsSource="{Binding Sehirler}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="{DynamicResource FrameBorderColor}" 
+                               BackgroundColor="{DynamicResource FrameBackgroundColor}"
+                               Padding="10"
+                               CornerRadius="10">
+                            <StackLayout>
+                                <Label Text="{Binding FormattedName}" FontSize="20" FontAttributes="Bold"
+                                       TextColor="{DynamicResource PrimaryTextColor}" />
+                                <Label Text="{Binding LastRefreshFormatted}" FontSize="14"
+                                       TextColor="{DynamicResource SecondaryTextColor}" />
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Button Text="🔄" CommandParameter="{Binding .}" Clicked="Update_Clicked"
+                                            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                            TextColor="White" />
+                                    <Button Text="🗑️" CommandParameter="{Binding .}" Clicked="Delete_Clicked"
+                                            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                            TextColor="White" />
+                                    <Button Text="⭐" CommandParameter="{Binding .}" Clicked="Favorite_Clicked"
+                                            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                            TextColor="White" />
+                                    <Button Text="🔍 Detay" CommandParameter="{Binding .}" Clicked="ShowDetail_Clicked"
+                                            BackgroundColor="{DynamicResource ButtonBackgroundColor}"
+                                            TextColor="White" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

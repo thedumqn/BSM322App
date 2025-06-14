@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BSM322App.LoginPage"
+    Title="Giriş Yap"
+    BackgroundColor="{AppThemeBinding Light=#F0F4F8, Dark=#1E1E1E}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#2C2C2C}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#DDD, Dark=#444}" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="2,2" Radius="4" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=#333, Dark=#DDD}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="20" VerticalOptions="CenterAndExpand">
+
+            <!-- Logo/Başlık -->
+            <Frame BackgroundColor="{AppThemeBinding Light=#0D47A1, Dark=#0D47A1}" Padding="25" CornerRadius="15" HorizontalOptions="Center" HasShadow="True">
+                <Label Text="BSM322 Uygulaması" FontSize="28" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- Giriş Formu -->
+            <Frame>
+                <StackLayout Spacing="15">
+
+                    <Label Text="E-posta" FontSize="16" FontAttributes="Bold" />
+
+                    <Frame HasShadow="False" Padding="0" CornerRadius="8" BorderColor="{AppThemeBinding Light=#CCC, Dark=#555}">
+                        <Entry 
+                            x:Name="EmailEntry" 
+                            Placeholder="E-posta adresinizi girin" 
+                            Keyboard="Email"
+                            BackgroundColor="{AppThemeBinding Light=Transparent, Dark=Transparent}"
+                            TextColor="{AppThemeBinding Light=#222, Dark=#EEE}" />
+                    </Frame>
+
+                    <Label Text="Şifre" FontSize="16" FontAttributes="Bold" />
+
+                    <Frame HasShadow="False" Padding="0" CornerRadius="8" BorderColor="{AppThemeBinding Light=#CCC, Dark=#555}">
+                        <Entry 
+                            x:Name="PasswordEntry" 
+                            Placeholder="Şifrenizi girin" 
+                            IsPassword="True"
+                            BackgroundColor="{AppThemeBinding Light=Transparent, Dark=Transparent}"
+                            TextColor="{AppThemeBinding Light=#222, Dark=#EEE}" />
+                    </Frame>
+
+                    <Button Text="Giriş Yap" BackgroundColor="#388E3C" TextColor="White" Clicked="OnGirisYapClicked" />
+
+                    <Button Text="Kayıt Ol" BackgroundColor="#1976D2" TextColor="White" Clicked="OnKayitOlClicked" />
+
+                </StackLayout>
+            </Frame>
+
+            <!-- Bilgi Metni -->
+            <Label Text="Uygulamayı kullanmak için giriş yapmanız gerekiyor."
+                   FontSize="14" TextColor="{AppThemeBinding Light=Gray, Dark=#AAA}" HorizontalOptions="Center" />
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSM322App.GorevDetayPage"
+             Title="Görev Detayı">
+
+    <ScrollView Padding="20">
+        <StackLayout Spacing="15">
+
+            <Label Text="Görev Başlığı" FontSize="16" FontAttributes="Bold"/>
+            <Entry x:Name="BaslikEntry" Placeholder="Görev başlığını girin"/>
+
+            <Label Text="Görev Detayı" FontSize="16" FontAttributes="Bold"/>
+            <Editor x:Name="DetayEditor" Placeholder="Görev detayını girin" HeightRequest="100"/>
+
+            <Label Text="Tarih" FontSize="16" FontAttributes="Bold"/>
+            <DatePicker x:Name="TarihPicker"/>
+
+            <Label Text="Saat" FontSize="16" FontAttributes="Bold"/>
+            <TimePicker x:Name="SaatPicker"/>
+
+            <CheckBox x:Name="TamamlandiCheckBox"/>
+            <Label Text="Tamamlandı" FontSize="16"/>
+
+            <Button Text="Kaydet" BackgroundColor="Green" TextColor="White"
+                    Clicked="OnKaydetClicked" Margin="0,20,0,0"/>
+
+            <Button Text="İptal" BackgroundColor="Gray" TextColor="White"
+                    Clicked="OnIptalClicked"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

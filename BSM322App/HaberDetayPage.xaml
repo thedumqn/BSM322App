@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="BSM322App.HaberDetayPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:BSM322App"
+    mc:Ignorable="d"
+    Title="📖 Haber Detayı"
+    Shell.NavBarIsVisible="True"
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2E86AB</Color>
+            <Color x:Key="SecondaryColor">#A23B72</Color>
+            <Color x:Key="AccentColor">#F18F01</Color>
+            <Color x:Key="BackgroundColor">#F8F9FA</Color>
+            <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="TextPrimaryColor">#212529</Color>
+            <Color x:Key="TextSecondaryColor">#6C757D</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="📤 Paylaş" 
+                     Clicked="HaberPaylas_Clicked"
+                     Order="Primary"
+                     Priority="0" />
+        <ToolbarItem Text="🔄 Yenile" 
+                     Clicked="HaberYenile_Clicked"
+                     Order="Secondary"
+                     Priority="1" />
+        <ToolbarItem Text="🌐 Tarayıcıda Aç" 
+                     Clicked="TarayicidaAc_Clicked"
+                     Order="Secondary"
+                     Priority="2" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header Section -->
+        <Frame Grid.Row="0" 
+               BackgroundColor="{StaticResource CardBackgroundColor}"
+               CornerRadius="20"
+               HasShadow="True"
+               Padding="15,15,15,20"
+               Margin="0,0,0,10">
+            <StackLayout Spacing="10">
+                <!-- Title -->
+                <Label x:Name="haberBaslikLabel"
+                       Text="{Binding title}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimaryColor}"
+                       LineBreakMode="WordWrap" />
+
+                <!-- Date and Author Info -->
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Frame BackgroundColor="{StaticResource PrimaryColor}"
+                           CornerRadius="12"
+                           Padding="8,4"
+                           HasShadow="False">
+                        <Label Text="📅"
+                               FontSize="12"
+                               TextColor="White" />
+                    </Frame>
+
+                    <Label x:Name="haberTarihLabel"
+                           Text="{Binding FormatliTarih}"
+                           FontSize="12"
+                           TextColor="{StaticResource TextSecondaryColor}"
+                           VerticalOptions="Center" />
+
+                    <Frame BackgroundColor="{StaticResource AccentColor}"
+                           CornerRadius="12"
+                           Padding="8,4"
+                           HasShadow="False"
+                           IsVisible="{Binding author, Converter={StaticResource StringNotEmptyConverter}}">
+                        <Label Text="✍️"
+                               FontSize="12"
+                               TextColor="White" />
+                    </Frame>
+
+                    <Label x:Name="haberYazarLabel"
+                           Text="{Binding author}"
+                           FontSize="12"
+                           TextColor="{StaticResource TextSecondaryColor}"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding author, Converter={StaticResource StringNotEmptyConverter}}" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <!-- Web Content -->
+        <Frame Grid.Row="1"
+               BackgroundColor="{StaticResource CardBackgroundColor}"
+               CornerRadius="15"
+               HasShadow="True"
+               Padding="5"
+               Margin="10,0">
+
+            <Grid>
+                <!-- WebView -->
+                <WebView x:Name="haberDetayWebView"
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="White" />
+
+                <!-- Loading Overlay -->
+                <Frame x:Name="loadingFrame"
+                       BackgroundColor="White"
+                       Opacity="0.9"
+                       CornerRadius="10"
+                       IsVisible="True"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalOptions="FillAndExpand">
+
+                    <StackLayout VerticalOptions="Center" 
+                               HorizontalOptions="Center"
+                               Spacing="15">
+                        <ActivityIndicator x:Name="loadingIndicator"
+                                         IsRunning="True"
+                                         Color="{StaticResource PrimaryColor}"
+                                         Scale="1.5" />
+                        <Label Text="📰 Haber yükleniyor..."
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource TextSecondaryColor}"
+                               HorizontalOptions="Center" />
+                        <Label Text="Lütfen bekleyiniz"
+                               FontSize="14"
+                               TextColor="{StaticResource TextSecondaryColor}"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Frame>
+
+        <!-- Footer Section -->
+        <Frame Grid.Row="2"
+               BackgroundColor="{StaticResource PrimaryColor}"
+               CornerRadius="20"
+               HasShadow="True"
+               Padding="20,15">
+
+            <StackLayout Orientation="Horizontal" 
+                       HorizontalOptions="FillAndExpand"
+                       Spacing="10">
+
+                <Button x:Name="paylasBuotnu"
+                        Text="📤 Paylaş"
+                        BackgroundColor="{StaticResource AccentColor}"
+                        TextColor="White"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        Clicked="HaberPaylas_Clicked"
+                        HorizontalOptions="FillAndExpand" />
+
+                <Button x:Name="tarayiciBoutnu"
+                        Text="🌐 Tarayıcı"
+                        BackgroundColor="White"
+                        TextColor="{StaticResource PrimaryColor}"
+                        BorderColor="{StaticResource PrimaryColor}"
+                        BorderWidth="2"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        Clicked="TarayicidaAc_Clicked"
+                        HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </Frame>
+
+        <!-- Error Message (Hidden by default) -->
+        <Frame x:Name="errorFrame"
+               Grid.Row="1"
+               BackgroundColor="#FFE6E6"
+               BorderColor="#FF4444"
+               CornerRadius="15"
+               IsVisible="False"
+               Margin="10,0"
+               Padding="20">
+
+            <StackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="❌"
+                       FontSize="48"
+                       HorizontalOptions="Center" />
+                <Label Text="Haber yüklenemedi"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#CC0000"
+                       HorizontalOptions="Center" />
+                <Label x:Name="errorMessageLabel"
+                       Text="İnternet bağlantınızı kontrol edin"
+                       FontSize="14"
+                       TextColor="#CC0000"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                <Button Text="🔄 Tekrar Dene"
+                        BackgroundColor="#FF4444"
+                        TextColor="White"
+                        CornerRadius="20"
+                        Clicked="HaberYenile_Clicked"
+                        HorizontalOptions="Center"
+                        Margin="0,10,0,0" />
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

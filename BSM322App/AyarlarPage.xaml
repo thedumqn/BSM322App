@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BSM322App.AyarlarPage"
+    Title="Ayarlar"
+    BackgroundColor="{AppThemeBinding Light=#F5F9FF, Dark=#121212}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=#1E1E1E}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light=#DDD, Dark=#444}" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=#222, Dark=#EEE}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Tema Ayarları -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Görünüm Ayarları" FontSize="18" FontAttributes="Bold"/>
+                    <HorizontalStackLayout>
+                        <Label Text="Koyu Tema" FontSize="16" VerticalOptions="Center" 
+                               HorizontalOptions="FillAndExpand"/>
+                        <Switch x:Name="KoyuTemaSwitch" Toggled="OnKoyuTemaToggled" />
+                    </HorizontalStackLayout>
+                    <Label Text="Açık ve koyu temalar arasında geçiş yapabilirsiniz." 
+                           FontSize="13" TextColor="{AppThemeBinding Light=Gray, Dark=LightGray}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Bilgiler -->
+            <Frame>
+                <VerticalStackLayout>
+                    <Label Text="Uygulama Bilgileri" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="BSM322 Görsel Programlama Ödevi" FontSize="16"/>
+                    <Label Text="Versiyon: 1.0.0" FontSize="14" TextColor="Gray"/>
+                    <Label Text="Geliştirici: Sadettin Duman" FontSize="14" TextColor="Gray"/>
+                    <Label Text="Öğrenci No: 21010310011" FontSize="14" TextColor="Gray"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Çıkış Butonu -->
+            <Button Text="Çıkış Yap" BackgroundColor="Crimson" TextColor="White"
+                    Clicked="OnCikisYapClicked" CornerRadius="8"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
